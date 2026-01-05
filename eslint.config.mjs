@@ -5,18 +5,18 @@ import prettier from 'eslint-config-prettier/flat'
 import pluginPrettier from 'eslint-plugin-prettier'
 
 const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  prettier,
-  {
-    plugins: {
-      prettier: pluginPrettier,
+    ...nextVitals,
+    ...nextTs,
+    prettier,
+    {
+        plugins: {
+            prettier: pluginPrettier,
+        },
+        rules: {
+            'prettier/prettier': ['error'],
+        },
     },
-    rules: {
-      'prettier/prettier': ['error'],
-    },
-  },
-  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
+    globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
 ])
 
 export default eslintConfig
