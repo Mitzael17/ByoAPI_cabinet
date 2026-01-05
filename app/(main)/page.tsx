@@ -1,9 +1,11 @@
 import { Button } from '@shared/ui/button'
+import { getTranslations } from 'next-intl/server'
 
-export default function Home() {
+export default async function Home() {
+    const t = await getTranslations('Test')
     return (
         <>
-            <Button>test</Button>
+            <Button>{t('title')}</Button>
         </>
     )
 }
