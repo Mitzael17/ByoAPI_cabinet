@@ -1,5 +1,18 @@
 {
     "Test": {
         "title": "Test from i18n"
+    },
+    "SignInForm": {
+        "title": "Welcome",
+        "login": "Log in to your account",
+        "email": "Email",
+        "password": "Password",
+        "remember": "Remember me",
+        "forgetPassword": "Forget password?",
+        "signIn": "Sign in",
+        "noAccount": "Don't have an account?",
+        "signUp": "Sign up",
+        "invalidEmail": "The email is invalid",
+        "unauthorized": "The email or password is incorrect"
     }
 }

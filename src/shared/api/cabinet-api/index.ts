@@ -1,1 +1,1 @@
-export { cabinetApi } from './cabinet-api'
+export { cabinetApi, cabinetApiReducer } from './cabinet-api'
