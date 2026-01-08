@@ -9,9 +9,9 @@
  * for this file to be re-created
  */
 
-import * as Types from '../../../app/services/types.generated';
+import * as Types from '../../../shared/model/cabinet-api-types.generated';
 
-import { api } from '/src/shared/api/cabinet-api/cabinet-api';
+import { cabinetApi } from '@shared/api/cabinet-api';
 export type SignInMutationVariables = Types.Exact<{
   password: Types.Scalars['String']['input'];
   email: Types.Scalars['String']['input'];
@@ -30,7 +30,7 @@ export const SignInDocument = `
 }
     `;
 
-const injectedRtkApi = api.injectEndpoints({
+const injectedRtkApi = cabinetApi.injectEndpoints({
   endpoints: (build) => ({
     signIn: build.mutation<SignInMutation, SignInMutationVariables>({
       query: (variables) => ({ document: SignInDocument, variables })

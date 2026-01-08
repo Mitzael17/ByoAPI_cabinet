@@ -9,13 +9,16 @@ import { ROUTES } from '@shared/config/routes'
 import InternalLink from '@shared/ui/link'
 import { Button } from '@shared/ui/button'
 import InputWithIcon from '@shared/ui/input-with-icon'
-import { useSignInMutation } from '@entities/session'
+import { setRemember, useSignInMutation } from '@entities/session'
 import { SignInFormSchema, signInFormSchema } from '@features/sign-in/model/sign-in-form-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useAppDispatch } from '@shared/redux'
+import { redirect } from 'next/navigation'
 
 export const SignInForm = () => {
     const t = useTranslations('SignInForm')
 
+    const dispatch = useAppDispatch()
     const [signIn] = useSignInMutation()
 
     const form = useForm<SignInFormSchema>({
@@ -23,7 +26,7 @@ export const SignInForm = () => {
         defaultValues: {
             email: '',
             password: '',
-            remember: 'checked',
+            remember: false,
         },
     })
 
@@ -80,7 +83,10 @@ export const SignInForm = () => {
                             render={({ field }) => (
                                 <FormItem className="flex gap-0">
                                     <FormControl className="cursor-pointer">
-                                        <Checkbox {...field} />
+                                        <Checkbox
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
                                     </FormControl>
                                     <FormLabel className="pl-2 cursor-pointer">
                                         {t('remember')}
@@ -99,17 +105,21 @@ export const SignInForm = () => {
     )
 
     async function submitHandler(data: SignInFormSchema) {
-        const result = await signIn(data)
+        dispatch(setRemember(data.remember))
+
+        const result = await signIn({ email: data.email, password: data.password })
 
         if (result.error) {
-            if ('status' in result.error && result.error.status === 401) {
+            if ('code' in result.error && result.error.code === 401) {
                 form.setError('email', {})
                 return form.setError('password', { message: result.error.message })
             }
 
-            alert(result.error.message)
+            alert('Unknown error.')
 
             return
         }
+
+        redirect(ROUTES.home)
     }
 }

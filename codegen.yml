@@ -5,7 +5,7 @@ watchConfig:
   usePolling: true
   interval: 1000
 generates:
-  src/app/services/types.generated.ts:
+  src/shared/model/cabinet-api-types.generated.ts:
     plugins:
       - typescript
     config:
@@ -13,7 +13,7 @@ generates:
   src/:
     preset: near-operation-file
     presetConfig:
-      baseTypesPath: app/services/types.generated.ts
+      baseTypesPath: "shared/model/cabinet-api-types.generated.ts"
     plugins:
       - add:
           content: >
@@ -30,7 +30,8 @@ generates:
              */
       - typescript-operations
       - typescript-rtk-query:
-          importBaseApiFrom: "/src/shared/api/cabinet-api/cabinet-api"
+          importBaseApiFrom: "@shared/api/cabinet-api"
+          importBaseApiAlternateName: "cabinetApi"
           exportHooks: true
     config:
       maybeValue: T # normally, this would be T | null, but our msw mock returns everything as nullable, so we want to force these as non-nullalbe

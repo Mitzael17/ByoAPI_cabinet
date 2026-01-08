@@ -12,5 +12,5 @@ export const makeStore = () => {
 }
 export const appStore = makeStore()
 
-export type AppState = ReturnType<typeof makeStore>
+export type AppState = ReturnType<typeof appStore.getState>
 export type AppDispatch = typeof appStore.dispatch
