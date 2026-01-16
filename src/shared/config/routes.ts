@@ -3,4 +3,5 @@ export const ROUTES = {
     signIn: '/sign-in',
     recover: '/recover',
     signUp: '/sign-up',
+    signConfirm: '/sign-confirm',
 }

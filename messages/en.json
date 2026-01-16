@@ -2,9 +2,10 @@
     "Test": {
         "title": "Test from i18n"
     },
-    "SignInForm": {
+    "Auth": {
         "title": "Welcome",
         "login": "Log in to your account",
+        "register": "Create a new account",
         "email": "Email",
         "password": "Password",
         "remember": "Remember me",
@@ -13,6 +14,12 @@
         "noAccount": "Don't have an account?",
         "signUp": "Sign up",
         "invalidEmail": "The email is invalid",
-        "unauthorized": "The email or password is incorrect"
+        "unauthorized": "The email or password is incorrect",
+        "passwordsDontMatch": "The passwords don't match",
+        "shortPassword": "The password is too short",
+        "longPassword": "The password is too long",
+        "confirmPassword": "Confirm password",
+        "userAlreadyExists": "The email is already registered",
+        "haveAccount": "Do you have an account?"
     }
 }
